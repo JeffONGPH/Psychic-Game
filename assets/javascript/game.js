@@ -34,7 +34,6 @@ document.onkeyup = function (event) {
             alert("Try again?" + "\n" + "You won't get it this time?!")
             guessesLeft = 10;
             document.getElementById("guessesLeft").innerHTML = guessesLeft;
-            document.getElementById("guessesLeft").innerHTML = guessesLeft;
             computer = letters[Math.floor(Math.random() * letters.length)];
             console.log("Computer's Letter is" + " " + computer);
         } else {
@@ -54,6 +53,8 @@ document.onkeyup = function (event) {
             console.log("guesses" + guesses);
             alert("Game Over" + "\n" + "Click Okay To Try Again");
             document.getElementById("guessesLeft").innerHTML = "0";
+            computer = letters[Math.floor(Math.random() * letters.length)];
+            console.log("Computer's Letter is" + " " + computer);
         }
     } else {
         alert("Please choose a letter between A to Z !");
