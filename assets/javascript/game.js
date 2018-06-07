@@ -15,49 +15,48 @@ console.log("Computer's Letter is" + " " + computer);
 //USER INPUT AND PROCESSING//
 document.onkeyup = function (event) {
 
-    var userInput = String.fromCharCode(event.keyCode).toLowerCase();
-    console.log("userInput = " + userInput)
+    if (event.keyCode >= 65 && event.keyCode <= 90) {
 
-    guesses.push(userInput);
-    console.log("guesses = " + guesses)
-    document.getElementById("guesses").innerHTML = " Guesses so far : " + guesses.join(" , ");
+        var userInput = String.fromCharCode(event.keyCode).toLowerCase();
+        console.log("userInput = " + userInput);
 
+        guesses.push(userInput);
+        document.getElementById("guesses").innerHTML = guesses.join(" , ");
+        console.log("guesses = " + guesses);
 
-    if (userInput == computer) {
-        wins++;
-        console.log("wins = " + wins)
-        document.getElementById("wins").innerHTML = " Wins : " + wins;
-        guesses = [];
-        console.log("guesses" + guesses)
-        alert("This can't be true! You read my mind!")
-        alert("Try again?" + "\n" + "You won't get it this time?!")
-        if (alert("Try again?" + "\n" + "You won't get it this time?!")) {guessesLeft = 10;
-            document.getElementById("guessesLeft").innerHTML = " Guesses left : " + guessesLeft;};
-        guessesLeft = 10;
-        document.getElementById("guessesLeft").innerHTML = " Guesses left : " + guessesLeft;
-        computer = letters[Math.floor(Math.random() * letters.length)];
-        console.log("Computer's Letter is" + " " + computer);
+        if (userInput == computer) {
+            wins++;
+            document.getElementById("wins").innerHTML = wins;
+            console.log("wins = " + wins);
+            guesses = [];
+            console.log("guesses" + guesses);
+            alert("This can't be true! You read my mind!")
+            alert("Try again?" + "\n" + "You won't get it this time?!")
+            guessesLeft = 10;
+            document.getElementById("guessesLeft").innerHTML = guessesLeft;
+            document.getElementById("guessesLeft").innerHTML = guessesLeft;
+            computer = letters[Math.floor(Math.random() * letters.length)];
+            console.log("Computer's Letter is" + " " + computer);
+        } else {
+            loses++;
+            document.getElementById("loses").innerHTML = loses;
+            console.log("loses = " + loses);
+            guessesLeft--;
+            document.getElementById("guessesLeft").innerHTML = guessesLeft;
+            console.log("Guesses Left = " + guessesLeft);
+        }
 
+        if (guessesLeft == 0) {
+            guessesLeft = 10;
+            guesses = [];
+            document.getElementById("loses").innerHTML = loses;
+            console.log("Guesses Left = " + guessesLeft);
+            console.log("guesses" + guesses);
+            alert("Game Over" + "\n" + "Click Okay To Try Again");
+            document.getElementById("guessesLeft").innerHTML = "0";
+        }
     } else {
-        loses++;
-        console.log("loses = " + loses)
-        document.getElementById("loses").innerHTML = " Loses : " + loses;
-        guessesLeft--;
-        console.log("Guesses Left = " + guessesLeft)
-        document.getElementById("guessesLeft").innerHTML = " Guesses left : " + guessesLeft;
-
+        alert("Please choose a letter between A to Z !");
     }
 
-    if (guessesLeft < 0) {
-        guessesLeft = 10;
-        guesses = [];
-        console.log("Guesses Left = " + guessesLeft)
-        console.log("guesses" + guesses)
-        alert("Game Over" + "\n" + "Click Okay To Try Again")
-        document.getElementById("guessesLeft").innerHTML = " Guesses left : " + "10";
-        loses--;
-        document.getElementById("loses").innerHTML = " Loses : " + loses;
-        
-       
-    }
 };
